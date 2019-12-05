@@ -1,6 +1,4 @@
 import os
-import urllib
-import zipfile
 from pyspark import SparkConf, SparkContext
 from pyspark.mllib.recommendation import ALS
 from pyspark.mllib.recommendation import MatrixFactorizationModel
@@ -10,7 +8,7 @@ import numpy as np
 
 
 sc = SparkContext(appName="MovieRating")
-# Disable the verbose logs
+
 
 
 ratingdf = sc.textFile("ml-latest-small/ratings.csv")
