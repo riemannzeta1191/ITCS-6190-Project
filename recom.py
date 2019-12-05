@@ -59,5 +59,3 @@ print('For testing data the RMSE is %s' % (error_test))
 model_path = os.path.join('./models', 'movie_lens_als')
 
 
-model.save(sc, model_path)
-same_model = MatrixFactorizationModel.load(sc, model_path)
