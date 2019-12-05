@@ -1,0 +1,1 @@
+For testing data the RMSE is 1.1927148561404024
