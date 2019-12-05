@@ -21,13 +21,13 @@ small_ratings_data = ratingdf.filter(lambda line: line!=ratingdfh)\
 moviedf = sc.textFile("ml-latest-small/movies.csv")
 moviedfh = moviedf.take(1)[0]
 small_movies_data = moviedf.filter(lambda line: line!=moviedfh)\
-    .map(lambda line: line.split(",")).map(lambda tokens: (tokens[0],tokens[1])).cache()
+    .map(lambda line: line.split(",")).map(lambda tl: (tl[0],tl[1])).cache()
 
 
 
 
 training_RDD, validation_RDD, test_RDD = small_ratings_data.randomSplit([6, 2, 2], seed=10)
-validation_for_predict_RDD = validation_RDD.map(lambda x: (x[0], x[1]))
+validationpredictRDD = validation_RDD.map(lambda x: (x[0], x[1]))
 test_for_predict_RDD = test_RDD.map(lambda x: (x[0], x[1]))
 
 
@@ -37,7 +37,6 @@ iterations = 10
 rank = 10
 
 min_error = float('inf')
-best_rank = -1
 
 
 model = ALS.train(training_RDD, rank, seed=seed, iterations=iterations)
